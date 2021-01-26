@@ -1,12 +1,26 @@
 import './styles.css';
 import {Link} from 'react-router-dom';
 import marvelLogo from '../../assets/marvelLogo.svg';
+import { useState } from 'react';
 
 const PageHeader = () => {
+  const [menuVisibility, setMenuVisibility] = useState("hidden");
+
+  const changeMenuVisibility = () => {
+    const menu = (menuVisibility === "hidden") ? "visible" : "hidden";
+
+    setMenuVisibility(menu);
+  }
 
   return (
     <>
-      <nav className="navbar">
+      <nav className="portrait-nav">
+        <Link to='/' className="home-page">
+          <img className="home-img-btn" src={marvelLogo} alt="Marvel Logo"/>
+        </Link>
+        <button className="menu-btn" onClick={changeMenuVisibility} type="button">Menu</button>
+      </nav>
+      <nav className={`landscape-nav ${menuVisibility}`}>
         <Link to='/' className="home-page">
           <img className="home-img-btn" src={marvelLogo} alt="Marvel Logo"/>
         </Link>

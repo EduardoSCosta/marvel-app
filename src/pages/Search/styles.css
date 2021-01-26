@@ -77,3 +77,30 @@ h1 {
 .search-btn:hover {
   filter: brightness(80%);
 }
+
+@media (orientation: portrait) {
+	.results-grid {
+		grid-template-columns: repeat(1, 1fr);
+		row-gap: 10px;
+	}
+
+	.image-container {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: left;
+		border: solid 2px;
+	}
+
+	.hero-img {
+		width: 120px;
+		height: auto;
+		border-right: solid 2px;
+		border-bottom: none;
+	}
+
+	.hero-name {
+		font-size: 2rem;
+	}
+
+}
