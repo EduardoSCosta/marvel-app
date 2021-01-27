@@ -18,7 +18,9 @@ const PageHeader = () => {
         <Link to='/' className="home-page">
           <img className="home-img-btn" src={marvelLogo} alt="Marvel Logo"/>
         </Link>
-        <button className="menu-btn" onClick={changeMenuVisibility} type="button">Menu</button>
+        <div className={`menu-btn ${menuVisibility}`}  onClick={changeMenuVisibility}>
+          <div className="menu-btn-icon"></div>
+        </div>
       </nav>
       <nav className={`landscape-nav ${menuVisibility}`}>
         <Link to='/' className="home-page">
