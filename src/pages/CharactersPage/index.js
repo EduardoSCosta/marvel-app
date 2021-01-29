@@ -2,10 +2,11 @@ import { useState } from 'react';
 import api from '../../service/api';
 import MD5 from 'crypto-js/md5';
 import PageHeader from '../../components/PageHeader';
+import SearchField from '../../components/SearchField';
 
 import './styles.css';
 
-const Search = () => {
+const CharactersPage = () => {
 
   const [charactersResults, setCharactersResults] = useState({});
   const [characterSearch, setCharacterSearch] = useState("");
@@ -37,13 +38,8 @@ const Search = () => {
   return(
     <>
       <PageHeader/>
-      <div className="search-container">
-        <h1>CHARACTERS</h1>
-        <form className="search-form" onSubmit={handleSubmit}>
-          <input className="search-input" type="text" value={characterSearch} onChange={e => setCharacterSearch(e.target.value)}/>
-          <button className="search-btn" type="submit">Search</button>
-        </form>
-      </div>
+      <SearchField pageName="CHARACTERS" handleSubmit={handleSubmit} 
+                  itemSearch={characterSearch} setItemSearch={e => setCharacterSearch(e.target.value)}/>
       <div className="results-grid">
       {charactersResults.results !== undefined && charactersResults.results.map((heroes)=> {
         return (
@@ -56,7 +52,6 @@ const Search = () => {
       </div>
     </>
   );
-
 }
 
-export default Search;
+export default CharactersPage;
