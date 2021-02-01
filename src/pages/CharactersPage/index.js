@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import api from '../../service/api';
-import MD5 from 'crypto-js/md5';
 import PageHeader from '../../components/PageHeader';
 import SearchField from '../../components/SearchField';
+import api from '../../service/api';
+import md5Hash from '../../utils/md5Hash';
 
 import './styles.css';
 
@@ -11,12 +11,10 @@ const CharactersPage = () => {
   const [charactersResults, setCharactersResults] = useState({});
   const [characterSearch, setCharacterSearch] = useState("");
 
-  const api_call = async () => {
+  const apiCall = async () => {
 
+    const timeStamp = Date.now().toString();
     const publicApiKey = process.env.REACT_APP_API_PUBLIC_KEY;
-    const privateApiKey = process.env.REACT_APP_API_PRIVATE_KEY;
-    const timeStamp = Date.now();
-    const Md5Hash = MD5(timeStamp.toString() + privateApiKey + publicApiKey).toString();
 
     const request = api.get("v1/public/characters",
       {params: {
@@ -24,7 +22,7 @@ const CharactersPage = () => {
         nameStartsWith: (characterSearch.length > 0) ? characterSearch : null,
         ts: timeStamp,
         apikey: publicApiKey,
-        hash: Md5Hash
+        hash: md5Hash(timeStamp, publicApiKey)
       }});
     const response = await request;
     setCharactersResults(response.data.data);
@@ -32,7 +30,7 @@ const CharactersPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    api_call();
+    apiCall();
 }
 
   return(
