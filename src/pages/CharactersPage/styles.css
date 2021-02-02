@@ -31,6 +31,17 @@
   text-align: center;
 }
 
+.pagination {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+.page-item {
+  margin: 0 5px 0 5px;
+  cursor: pointer;
+}
+
 @media (orientation: portrait) {
   .results-grid {
     grid-template-columns: repeat(1, 1fr);
