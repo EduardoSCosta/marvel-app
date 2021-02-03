@@ -41,8 +41,8 @@ const EventsPage = () => {
       {eventsResults.results !== undefined && eventsResults.results.map((events)=> {
         return (
           <div className="image-container" key={events.id}>
-            <img className="event-img" src={`${events.thumbnail.path}/portrait_incredible.${events.thumbnail.extension}`} alt={events.name}/>
-            <span className="event-name">{events.title}</span>
+            <img className="item-img" src={`${events.thumbnail.path}/portrait_incredible.${events.thumbnail.extension}`} alt={events.name}/>
+            <span className="item-name">{events.title}</span>
           </div>
         );
         })}

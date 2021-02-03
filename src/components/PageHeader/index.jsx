@@ -1,6 +1,6 @@
 import './styles.css';
 import {Link} from 'react-router-dom';
-import marvelLogo from '../../assets/marvelLogo.svg';
+import marvelLogo from '../../assets/marvel-logo.svg';
 import { useState } from 'react';
 import MenuIcon from '../MenuIcon';
 

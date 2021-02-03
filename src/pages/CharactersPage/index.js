@@ -12,7 +12,6 @@ const CharactersPage = () => {
   const [charactersResults, setCharactersResults] = useState({});
   const [characterSearchField, setCharacterSearchField] = useState("");
   const [characterSearch, setCharacterSearch] = useState("");
-  const [currentPage, setCurrentPage] = useState(0);
   const [firstRender, setFirstRender] = useState(false);
 
   const apiCall = async (dataOffset) => {
@@ -42,10 +41,6 @@ const CharactersPage = () => {
   useEffect(() => {
     firstRender && apiCall(0);
   },[firstRender, characterSearch]);
-
-  useEffect(() => {
-    firstRender && apiCall(currentPage * 30);
-  },[currentPage]);
   
   return(
     <>
@@ -56,19 +51,29 @@ const CharactersPage = () => {
       {charactersResults.results !== undefined && charactersResults.results.map((heroes)=> {
         return (
           <div className="image-container" key={heroes.id}>
-            <img className="hero-img" src={`${heroes.thumbnail.path}/portrait_incredible.${heroes.thumbnail.extension}`} alt={heroes.name}/>
-            <span className="hero-name">{heroes.name}</span>
+            <img className="item-img" src={`${heroes.thumbnail.path}/portrait_incredible.${heroes.thumbnail.extension}`} alt={heroes.name}/>
+            <span className="item-name">{heroes.name}</span>
           </div>
         );
         })}
+      </div>
         {charactersResults.results !== undefined && <ReactPaginate
                                                       containerClassName={"pagination"}
                                                       pageClassName={"page-item"}
-                                                      pageCount={Math.ceil(charactersResults.total / charactersResults.count)} 
+                                                      pageLinkClassName={"page-item-link"}
+                                                      activeLinkClassName={"active-page-link"}
+                                                      previousClassName={"page-item"}
+                                                      nextClassName={"page-item"}
+                                                      breakClassName={"page-item"}
+                                                      breakLinkClassName={"page-item-link"}
+                                                      previousLinkClassName={"page-item-link"}
+                                                      nextLinkClassName={"page-item-link"}
+                                                      previousLabel={"<"}
+                                                      nextLabel={">"}
+                                                      pageCount={Math.ceil(charactersResults.total / charactersResults.limit)} 
                                                       pageRangeDisplayed={10} 
                                                       marginPagesDisplayed={3}
-                                                      onPageChange={({ selected: selectedPage }) => setCurrentPage(selectedPage)}/>}
-      </div>
+                                                      onPageChange={({ selected: selectedPage }) => apiCall(selectedPage * 30)}/>}
     </>
   );
 }
