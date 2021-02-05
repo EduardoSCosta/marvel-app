@@ -14,31 +14,33 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 25px;
+  height: 26px;
 }
 
 .search-input {
-  border: solid 1px;
-  border-radius: 15px;
-  margin:0 5px 0 5px;
+  border-radius: 1px 0 0 1px;
+  margin-left: 5px;
   width: 100%;
-  height: 25px;
+  height: 26px;
   box-sizing: border-box;
   outline: none;
   padding-left: 5px;
 }
 
 .search-btn {
-  border-radius: 15px;
-  width: 80px;
-  height: 25px;
-  margin:0 5px 0 5px;
+  border-radius: 0 1px 1px 0;
+  width: 60px;
+  height: 26px;
+  margin-right: 5px;
   outline: none;
   background-color: #ec1d24;
   color: #ffffff;
   font-size: 0.9rem;
   font-weight: 500;
   transition: filter 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .search-btn:hover {
