@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
-import Pagination from '../../components/Pagination';
-import PageHeader from '../../components/PageHeader';
-import SearchField from '../../components/SearchField';
-import api from '../../service/api';
-import md5Hash from '../../utils/md5Hash';
+import {Link} from 'react-router-dom';
+import Pagination from '../../../components/Pagination';
+import PageHeader from '../../../components/PageHeader';
+import SearchField from '../../../components/SearchField';
+import api from '../../../service/api';
+import md5Hash from '../../../utils/md5Hash';
 
 import './styles.css';
 
-const CharactersPage = () => {
+const CharactersListPage = () => {
 
   const [charactersResults, setCharactersResults] = useState({});
   const [characterSearchField, setCharacterSearchField] = useState("");
@@ -50,10 +51,10 @@ const CharactersPage = () => {
       <div className="results-grid">
       {charactersResults.results !== undefined && charactersResults.results.map((hero)=> {
         return (
-          <div className="image-container" key={hero.id}>
+          <Link className="image-container" key={hero.id} to={`/character/${hero.id}`}>
             <img className="item-img" src={`${hero.thumbnail.path}/portrait_incredible.${hero.thumbnail.extension}`} alt={hero.name}/>
             <span className="item-name">{hero.name}</span>
-          </div>
+          </Link>
         );
         })}
       </div>
@@ -64,4 +65,4 @@ const CharactersPage = () => {
   );
 }
 
-export default CharactersPage;
+export default CharactersListPage;

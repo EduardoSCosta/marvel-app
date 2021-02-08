@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import Pagination from '../../components/Pagination';
-import PageHeader from '../../components/PageHeader';
-import SearchField from '../../components/SearchField';
-import api from '../../service/api';
-import md5Hash from '../../utils/md5Hash';
+import Pagination from '../../../components/Pagination';
+import PageHeader from '../../../components/PageHeader';
+import SearchField from '../../../components/SearchField';
+import api from '../../../service/api';
+import md5Hash from '../../../utils/md5Hash';
 
 import './styles.css';
 
-const EventsPage = () => {
+const EventsListPage = () => {
 
   const [eventsResults, setEventsResults] = useState({});
   const [eventSearchField, setEventSearchField] = useState("");
@@ -64,4 +64,4 @@ const EventsPage = () => {
   );
 }
 
-export default EventsPage;
+export default EventsListPage;

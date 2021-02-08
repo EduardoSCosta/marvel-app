@@ -2,12 +2,14 @@ import PageHeader from '../../components/PageHeader';
 
 import './styles.css';
 
-const CreatorsPage = () => {
+const LandingPage = () => {
+
   return(
     <>
       <PageHeader/>
     </>
   );
+
 }
 
-export default CreatorsPage;
+export default LandingPage;
