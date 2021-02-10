@@ -52,7 +52,9 @@ const EventsListPage = () => {
         return (
           <div className="image-container" key={event.id}>
             <img className="item-img" src={`${event.thumbnail.path}/portrait_incredible.${event.thumbnail.extension}`} alt={event.name}/>
-            <span className="item-name">{event.title}</span>
+            <div className="item-name-container">
+              <span className="item-name">{event.title}</span>
+            </div>
           </div>
         );
         })}

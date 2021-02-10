@@ -53,7 +53,9 @@ const CharactersListPage = () => {
         return (
           <Link className="image-container" key={hero.id} to={`/character/${hero.id}`}>
             <img className="item-img" src={`${hero.thumbnail.path}/portrait_incredible.${hero.thumbnail.extension}`} alt={hero.name}/>
-            <span className="item-name">{hero.name}</span>
+            <div className="item-name-container">
+              <span className="item-name">{hero.name}</span>
+            </div>
           </Link>
         );
         })}
