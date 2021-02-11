@@ -14,7 +14,7 @@
   justify-content: space-between;
   border-radius: 1px;
   text-decoration: none;
-  transition: filter 0.5s;
+  transition: filter 0.3s;
 }
 
 .image-container:hover {
@@ -32,7 +32,7 @@
   padding:0px 10px 0px 10px;
   height: 100px;
   background-size: 200% 200%;
-  transition: background-position 0.5s ease-in-out;
+  transition: background-position 0.3s ease-in-out;
 }
 
 .item-name {
@@ -40,7 +40,7 @@
   color: #ffffff;
 }
 
-@media (orientation: landscape) {
+@media (orientation: landscape){
 
   .item-name-container {
     justify-content: center;
@@ -62,7 +62,7 @@
 
 }
 
-@media (orientation: portrait) {
+@media (orientation: portrait){
   .results-grid {
     grid-template-columns: repeat(1, 1fr);
     row-gap: 5px;

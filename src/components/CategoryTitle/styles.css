@@ -1,0 +1,11 @@
+.categ-title {
+  cursor: pointer;
+}
+
+.chevron-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.chevron-icon.visible {
+  transform: rotate(180deg);
+}

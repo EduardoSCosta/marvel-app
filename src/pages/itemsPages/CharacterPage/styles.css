@@ -1,3 +1,90 @@
+.character-data {
+  margin: 50px auto 20px auto;
+  padding-top: 20px;
+  display: grid;
+  grid-gap: 20px;
+}
+
 .character-name {
-  margin-top: 50px;
+  grid-area: name;
+}
+
+.character-img {
+  grid-area: image;
+  border-radius: 2%;
+}
+
+.character-description {
+  grid-area: description;
+  padding: 0 10px 0 10px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.character-comics {
+  grid-area: comics;
+  padding: 0 10px 0 10px;
+}
+
+.character-series {
+  grid-area: series;
+  padding: 0 10px 0 10px;
+}
+
+.character-stories {
+  grid-area: stories;
+  padding: 0 10px 0 10px;
+}
+
+.character-events {
+  grid-area: events;
+  padding: 0 10px 0 10px;
+}
+
+.items-list {
+  list-style-type: none;
+}
+
+.items-list.hidden {
+  display: none;
+}
+
+@media (orientation: landscape) {
+
+  .character-data {
+    max-width: 60%;
+    grid-template-areas: 'image name'
+                         'image description'
+                         'comics comics'
+                         'series series'
+                         'stories stories'
+                         'events events';
+    grid-template-columns: 216px auto;
+  }
+
+  .character-name {
+    justify-self: left;
+  }
+}
+
+@media (orientation: portrait) {
+
+  .character-data {
+    grid-template-areas: 'image'
+                         'name'
+                         'description'
+                         'comics'
+                         'series'
+                         'stories'
+                         'events';
+  }
+
+  .character-name {
+    justify-self: center;
+  }
+  
+  .character-img {
+    justify-self: center;
+    
+  }
 }
