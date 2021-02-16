@@ -5,7 +5,6 @@ import ComicsListPage from './pages/listsPages/ComicsListPage';
 import CreatorsListPage from './pages/listsPages/CreatorsListPage';
 import EventsListPage from './pages/listsPages/EventsListPage';
 import SeriesListPage from './pages/listsPages/SeriesListPage';
-import StoriesListPage from './pages/listsPages/StoriesListPage';
 
 import CharacterPage from './pages/itemsPages/CharacterPage';
 
@@ -18,7 +17,6 @@ const Routes = () => {
       <Route path="/creators" exact component={CreatorsListPage}/>
       <Route path="/events" exact component={EventsListPage}/>
       <Route path="/series" exact component={SeriesListPage}/>
-      <Route path="/stories" exact component={StoriesListPage}/>
 
       <Route path="/character/:characterId" component={CharacterPage}/>
     </BrowserRouter>

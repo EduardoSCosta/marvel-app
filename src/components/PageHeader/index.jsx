@@ -31,7 +31,6 @@ const PageHeader = () => {
           <li className="link-wrapper"><Link to='/Creators' className="page-link">CREATORS</Link></li>
           <li className="link-wrapper"><Link to='/Events' className="page-link">EVENTS</Link></li>
           <li className="link-wrapper"><Link to='/Series' className="page-link">SERIES</Link></li>
-          <li className="link-wrapper"><Link to='/Stories' className="page-link">STORIES</Link></li>
         </ul>
       </nav>
     </>
