@@ -46,7 +46,7 @@ const SeriesListPage = () => {
   return(
     <>
       <PageHeader/>
-      <SearchField pageName="SERIES" handleSubmit={handleSubmit} placeholderText="Series name"
+      <SearchField pageName="SERIES" handleSubmit={handleSubmit} placeholderText="Serie name"
                   itemSearch={serieSearchField} setItemSearch={e => setSerieSearchField(e.target.value)}/>
       <div className="results-grid">
       {seriesResults.results !== undefined && seriesResults.results.map((serie)=> {

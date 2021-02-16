@@ -46,7 +46,7 @@ const CreatorsListPage = () => {
   return(
     <>
       <PageHeader/>
-      <SearchField pageName="CREATORS" handleSubmit={handleSubmit} placeholderText="Creators name"
+      <SearchField pageName="CREATORS" handleSubmit={handleSubmit} placeholderText="Creator name"
                   itemSearch={creatorSearchField} setItemSearch={e => setCreatorSearchField(e.target.value)}/>
       <div className="results-grid">
       {creatorsResults.results !== undefined && creatorsResults.results.map((creator)=> {

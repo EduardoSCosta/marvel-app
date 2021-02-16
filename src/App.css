@@ -1,8 +1,7 @@
 .results-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  column-gap: 10px;
-  row-gap: 10px;
+  grid-gap: 10px;
   margin:0 5px 0 5px;
 }
 

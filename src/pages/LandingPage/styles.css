@@ -1,0 +1,46 @@
+.pages-wrapper {
+  margin: 50px 15% 10px 15%;
+  padding-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.pages-wrapper > .page-landing-link-container:first-child {
+  grid-column: span 2;
+}
+
+.page-landing-link-container {
+  border-radius: 6px;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background: radial-gradient(farthest-side,#ec1d24 98%,transparent) no-repeat, #000000;
+  background-size: 0% 0%;  
+  background-position:center; 
+  transition: background-size 0.3s linear;
+}
+
+.page-landing-link-container:hover {
+  background-size: 150% 300%;
+}
+
+.page-landing-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (orientation: portrait){
+  .pages-wrapper {
+    margin: 50px 10px 10px 10px;
+  }
+  
+}
