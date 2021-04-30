@@ -7,6 +7,6 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-#root {
+:root {
     background-color: #ffffff;
 }
