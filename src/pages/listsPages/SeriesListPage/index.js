@@ -3,10 +3,12 @@ import {Link} from 'react-router-dom';
 import Pagination from '../../../components/Pagination';
 import PageHeader from '../../../components/PageHeader';
 import SearchField from '../../../components/SearchField';
+import Loading from '../../../components/Loading';
 import api from '../../../service/api';
 import md5Hash from '../../../utils/md5Hash';
 
 import './styles.css';
+import PageFooter from '../../../components/PageFooter';
 
 const SeriesListPage = () => {
 
@@ -14,8 +16,12 @@ const SeriesListPage = () => {
   const [serieSearchField, setSerieSearchField] = useState("");
   const [serieSearch, setSerieSearch] = useState("");
   const [firstRender, setFirstRender] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hideResults, setHideResults] = useState("visible");
 
   const apiCall = async (dataOffset) => {
+    setIsLoading(true);
+    setHideResults("hidden");
 
     const timeStamp = Date.now().toString();
     const publicApiKey = process.env.REACT_APP_API_PUBLIC_KEY;
@@ -31,6 +37,8 @@ const SeriesListPage = () => {
       }});
     const response = await request;
     setSeriesResults(response.data.data);
+    setIsLoading(false);
+    setHideResults("visible");
   }
 
   const handleSubmit = (e) => {
@@ -48,7 +56,9 @@ const SeriesListPage = () => {
       <PageHeader/>
       <SearchField pageName="SERIES" handleSubmit={handleSubmit} placeholderText="Serie name"
                   itemSearch={serieSearchField} setItemSearch={e => setSerieSearchField(e.target.value)}/>
-      <div className="results-grid">
+      {isLoading && <Loading/>}
+      
+      <div className={`results-grid ${hideResults}`}>
       {seriesResults.results !== undefined && seriesResults.results.map((serie)=> {
         return (
           <div className="image-container" key={serie.id}>
@@ -63,6 +73,7 @@ const SeriesListPage = () => {
         {seriesResults.results !== undefined && <Pagination
                                                       pageCount={Math.ceil(seriesResults.total / seriesResults.limit)} 
                                                       onPageChange={({ selected: selectedPage }) => apiCall(selectedPage * 30)}/>}
+      <PageFooter/>
     </>
   );
 }

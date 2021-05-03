@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import CategoryTitle from '../../../components/CategoryTitle';
 import PageHeader from '../../../components/PageHeader';
+import PageFooter from '../../../components/PageFooter';
 import api from '../../../service/api';
 import md5Hash from '../../../utils/md5Hash';
 
@@ -102,6 +103,7 @@ const CharactersPage = ({match}) => {
                 </ul>
               </div>}
         </div>}
+        <PageFooter/>
     </>
   );
 }

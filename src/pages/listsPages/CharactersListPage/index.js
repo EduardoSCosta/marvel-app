@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import Pagination from '../../../components/Pagination';
 import PageHeader from '../../../components/PageHeader';
+import PageFooter from '../../../components/PageFooter';
 import SearchField from '../../../components/SearchField';
+import Loading from '../../../components/Loading';
 import api from '../../../service/api';
 import md5Hash from '../../../utils/md5Hash';
 
@@ -14,8 +16,12 @@ const CharactersListPage = () => {
   const [characterSearchField, setCharacterSearchField] = useState("");
   const [characterSearch, setCharacterSearch] = useState("");
   const [firstRender, setFirstRender] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hideResults, setHideResults] = useState("visible");
 
   const apiCall = async (dataOffset) => {
+    setIsLoading(true);
+    setHideResults("hidden");
 
     const timeStamp = Date.now().toString();
     const publicApiKey = process.env.REACT_APP_API_PUBLIC_KEY;
@@ -31,6 +37,8 @@ const CharactersListPage = () => {
       }});
     const response = await request;
     setCharactersResults(response.data.data);
+    setIsLoading(false);
+    setHideResults("visible");
   }
 
   const handleSubmit = (e) => {
@@ -48,21 +56,24 @@ const CharactersListPage = () => {
       <PageHeader/>
       <SearchField pageName="CHARACTERS" handleSubmit={handleSubmit} placeholderText="Character name"
                   itemSearch={characterSearchField} setItemSearch={e => setCharacterSearchField(e.target.value)}/>
-      <div className="results-grid">
-      {charactersResults.results !== undefined && charactersResults.results.map((hero)=> {
-        return (
-          <Link className="image-container" key={hero.id} to={`/character/${hero.id}`}>
-            <img className="item-img" src={`${hero.thumbnail.path}/portrait_incredible.${hero.thumbnail.extension}`} alt={hero.name}/>
-            <div className="item-name-container">
-              <span className="item-name">{hero.name}</span>
-            </div>
-          </Link>
-        );
-        })}
+      {isLoading && <Loading/>}
+
+      <div className={`results-grid ${hideResults}`}>      
+        {charactersResults.results !== undefined && charactersResults.results.map((hero)=> {
+          return (
+            <Link className="image-container" key={hero.id} to={`/character/${hero.id}`}>
+              <img className="item-img" src={`${hero.thumbnail.path}/portrait_incredible.${hero.thumbnail.extension}`} alt={hero.name}/>
+              <div className="item-name-container">
+                <span className="item-name">{hero.name}</span>
+              </div>
+            </Link>
+          );
+          })}
       </div>
         {charactersResults.results !== undefined && <Pagination
                                                       pageCount={Math.ceil(charactersResults.total / charactersResults.limit)} 
                                                       onPageChange={({ selected: selectedPage }) => apiCall(selectedPage * 30)}/>}
+      <PageFooter/>
     </>
   );
 }

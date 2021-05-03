@@ -1,0 +1,30 @@
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #272727;
+  height: 50px;
+  padding: 0 25px 0 25px;
+  border-top: 1px solid #000000;
+}
+
+footer span{
+  color: #ffffff;
+}
+
+.footer-links a {
+  text-decoration: none;
+  margin: 0 5px 0 5px;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
+
+.footer-links a:link {
+  color: #ffffff;
+}
+
+.footer-links a:visited {
+  color: #ffffff;
+}

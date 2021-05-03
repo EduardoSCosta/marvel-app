@@ -8,6 +8,7 @@ import eventsBackground from '../../assets/pagesLinksBackgrounds/events-backgrou
 import seriesBackground from '../../assets/pagesLinksBackgrounds/series-background.jpg';
 
 import './styles.css';
+import PageFooter from '../../components/PageFooter';
 
 const LandingPage = () => {
 
@@ -46,6 +47,7 @@ const LandingPage = () => {
           </Link>
         </div>
       </div>
+      <PageFooter/>
     </>
   );
 
