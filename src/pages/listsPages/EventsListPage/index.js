@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom';
+import { useState } from 'react';
 import Pagination from '../../../components/Pagination';
 import PageHeader from '../../../components/PageHeader';
 import SearchField from '../../../components/SearchField';
@@ -14,8 +13,6 @@ const EventsListPage = () => {
 
   const [eventsResults, setEventsResults] = useState({});
   const [eventSearchField, setEventSearchField] = useState("");
-  const [eventSearch, setEventSearch] = useState("");
-  const [firstRender, setFirstRender] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hideResults, setHideResults] = useState("visible");
 
@@ -29,7 +26,7 @@ const EventsListPage = () => {
     const request = api.get("v1/public/events",
       {params: {
         limit: 30,
-        nameStartsWith: (eventSearch.length > 0) ? eventSearch : null,
+        nameStartsWith: (eventSearchField.length > 0) ? eventSearchField : null,
         ts: timeStamp,
         offset: dataOffset,
         apikey: publicApiKey,
@@ -43,13 +40,8 @@ const EventsListPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setEventSearch(eventSearchField);
-    setFirstRender(true);
+    apiCall(0);
 }
-
-  useEffect(() => {
-    firstRender && apiCall(0);
-  },[firstRender, eventSearch]);
   
   return(
     <>
@@ -62,7 +54,7 @@ const EventsListPage = () => {
       {eventsResults.results !== undefined && eventsResults.results.map((event)=> {
         return (
           <div className="image-container" key={event.id}>
-            <img className="item-img" src={`${event.thumbnail.path}/portrait_incredible.${event.thumbnail.extension}`} alt={event.name}/>
+            <img className="item-img" src={`${event.thumbnail.path}/portrait_incredible.${event.thumbnail.extension}`} alt={event.title}/>
             <div className="item-name-container">
               <span className="item-name">{event.title}</span>
             </div>

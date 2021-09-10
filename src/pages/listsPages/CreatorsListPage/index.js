@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom';
+import { useState } from 'react';
 import Pagination from '../../../components/Pagination';
 import PageHeader from '../../../components/PageHeader';
 import SearchField from '../../../components/SearchField';
@@ -14,8 +13,6 @@ const CreatorsListPage = () => {
 
   const [creatorsResults, setCreatorsResults] = useState({});
   const [creatorSearchField, setCreatorSearchField] = useState("");
-  const [creatorSearch, setCreatorSearch] = useState("");
-  const [firstRender, setFirstRender] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hideResults, setHideResults] = useState("visible");
 
@@ -29,7 +26,7 @@ const CreatorsListPage = () => {
     const request = api.get("v1/public/creators",
       {params: {
         limit: 30,
-        nameStartsWith: (creatorSearch.length > 0) ? creatorSearch : null,
+        nameStartsWith: (creatorSearchField.length > 0) ? creatorSearchField : null,
         ts: timeStamp,
         offset: dataOffset,
         apikey: publicApiKey,
@@ -43,13 +40,8 @@ const CreatorsListPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCreatorSearch(creatorSearchField);
-    setFirstRender(true);
+    apiCall(0);
 }
-
-  useEffect(() => {
-    firstRender && apiCall(0);
-  },[firstRender, creatorSearch]);
   
   return(
     <>

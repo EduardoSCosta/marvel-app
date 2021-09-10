@@ -1,21 +1,18 @@
-import { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom';
+import { useState } from 'react';
 import Pagination from '../../../components/Pagination';
 import PageHeader from '../../../components/PageHeader';
+import PageFooter from '../../../components/PageFooter';
 import SearchField from '../../../components/SearchField';
 import Loading from '../../../components/Loading';
 import api from '../../../service/api';
 import md5Hash from '../../../utils/md5Hash';
 
 import './styles.css';
-import PageFooter from '../../../components/PageFooter';
 
 const ComicsListPage = () => {
 
   const [comicsResults, setComicsResults] = useState({});
   const [comicSearchField, setComicSearchField] = useState("");
-  const [comicSearch, setComicSearch] = useState("");
-  const [firstRender, setFirstRender] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hideResults, setHideResults] = useState("visible");
 
@@ -29,7 +26,7 @@ const ComicsListPage = () => {
     const request = api.get("v1/public/comics",
       {params: {
         limit: 30,
-        titleStartsWith: (comicSearch.length > 0) ? comicSearch : null,
+        titleStartsWith: (comicSearchField.length > 0) ? comicSearchField : null,
         ts: timeStamp,
         offset: dataOffset,
         apikey: publicApiKey,
@@ -43,13 +40,8 @@ const ComicsListPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setComicSearch(comicSearchField);
-    setFirstRender(true);
+    apiCall(0);
 }
-
-  useEffect(() => {
-    firstRender && apiCall(0);
-  },[firstRender, comicSearch]);
   
   return(
     <>

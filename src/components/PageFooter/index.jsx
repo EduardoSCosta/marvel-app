@@ -3,9 +3,15 @@ import { FaLinkedin, FaGithubSquare } from 'react-icons/fa';
 import './styles.css';
 
 const PageFooter = () => {
+  const getYear = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    return year;
+  }
+
   return (
     <footer>
-      <span>2020 | Eduardo Souza</span>
+      <span>{getYear()} | Eduardo Souza</span>
       <div className="footer-links">
         <a href="https://www.linkedin.com/in/eduardo-souza-costa-araujo/" 
           rel="noreferrer noopener"

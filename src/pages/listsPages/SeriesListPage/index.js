@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom';
+import { useState } from 'react';
 import Pagination from '../../../components/Pagination';
 import PageHeader from '../../../components/PageHeader';
 import SearchField from '../../../components/SearchField';
@@ -14,8 +13,6 @@ const SeriesListPage = () => {
 
   const [seriesResults, setSeriesResults] = useState({});
   const [serieSearchField, setSerieSearchField] = useState("");
-  const [serieSearch, setSerieSearch] = useState("");
-  const [firstRender, setFirstRender] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hideResults, setHideResults] = useState("visible");
 
@@ -29,7 +26,7 @@ const SeriesListPage = () => {
     const request = api.get("v1/public/series",
       {params: {
         limit: 30,
-        titleStartsWith: (serieSearch.length > 0) ? serieSearch : null,
+        titleStartsWith: (serieSearchField.length > 0) ? serieSearchField : null,
         ts: timeStamp,
         offset: dataOffset,
         apikey: publicApiKey,
@@ -43,13 +40,8 @@ const SeriesListPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSerieSearch(serieSearchField);
-    setFirstRender(true);
+    apiCall(0);
 }
-
-  useEffect(() => {
-    firstRender && apiCall(0);
-  },[firstRender, serieSearch]);
   
   return(
     <>
