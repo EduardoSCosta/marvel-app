@@ -3,8 +3,6 @@ import PageComp from '../../../components/PageComp';
 import api from '../../../service/api';
 import md5Hash from '../../../utils/md5Hash';
 
-import './styles.css';
-
 const CharactersListPage = () => {
 
   const [charactersResults, setCharactersResults] = useState({});

@@ -21,7 +21,7 @@ const PageComp = (
             <Link className="image-container" key={item.id} to={`/${goToPage}/${item.id}`}>
               <img className="item-img" src={`${item.thumbnail.path}/portrait_incredible.${item.thumbnail.extension}`} alt={itemType === "name" ? item.name : item.title}/>
               <div className="item-name-container">
-                <span className="item-name">{itemType === "name" ? item.name : item.title}</span>
+                <span className="item-name">{item[itemType]}</span>
               </div>
             </Link>
           );

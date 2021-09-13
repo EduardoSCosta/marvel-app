@@ -1,13 +1,7 @@
 import { useState } from 'react';
-import Pagination from '../../../components/Pagination';
-import PageHeader from '../../../components/PageHeader';
-import PageFooter from '../../../components/PageFooter';
-import SearchField from '../../../components/SearchField';
-import Loading from '../../../components/Loading';
+import PageComp from '../../../components/PageComp';
 import api from '../../../service/api';
 import md5Hash from '../../../utils/md5Hash';
-
-import './styles.css';
 
 const ComicsListPage = () => {
 
@@ -45,27 +39,11 @@ const ComicsListPage = () => {
   
   return(
     <>
-      <PageHeader/>
-      <SearchField pageName="COMICS" handleSubmit={handleSubmit} placeholderText="Comics name"
-                  itemSearch={comicSearchField} setItemSearch={e => setComicSearchField(e.target.value)}/>
-      {isLoading && <Loading/>}
-
-      <div className={`results-grid ${hideResults}`}>
-      {comicsResults.results !== undefined && comicsResults.results.map((comic)=> {
-        return (
-          <div className="image-container" key={comic.id}>
-            <img className="item-img" src={`${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`} alt={comic.name}/>
-            <div className="item-name-container">
-              <span className="item-name">{comic.title}</span>
-            </div>
-          </div>
-        );
-        })}
-      </div>
-        {comicsResults.results !== undefined && <Pagination
-                                                      pageCount={Math.ceil(comicsResults.total / comicsResults.limit)} 
-                                                      onPageChange={({ selected: selectedPage }) => apiCall(selectedPage * 30)}/>}
-      <PageFooter/>
+      <PageComp pageName="COMICS" handleSubmit={handleSubmit} placeholderText="Comic name"
+                itemSearch={comicSearchField} setItemSearch={e => setComicSearchField(e.target.value)}
+                isLoading={isLoading} hideResults={hideResults} itemResults={comicsResults}
+                goToPage="comic" itemType="title"
+                pageChange={({ selected: selectedPage }) => apiCall(selectedPage * 30)}/>
     </>
   );
 }

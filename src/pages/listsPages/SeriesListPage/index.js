@@ -1,13 +1,7 @@
 import { useState } from 'react';
-import Pagination from '../../../components/Pagination';
-import PageHeader from '../../../components/PageHeader';
-import SearchField from '../../../components/SearchField';
-import Loading from '../../../components/Loading';
+import PageComp from '../../../components/PageComp';
 import api from '../../../service/api';
 import md5Hash from '../../../utils/md5Hash';
-
-import './styles.css';
-import PageFooter from '../../../components/PageFooter';
 
 const SeriesListPage = () => {
 
@@ -45,27 +39,11 @@ const SeriesListPage = () => {
   
   return(
     <>
-      <PageHeader/>
-      <SearchField pageName="SERIES" handleSubmit={handleSubmit} placeholderText="Serie name"
-                  itemSearch={serieSearchField} setItemSearch={e => setSerieSearchField(e.target.value)}/>
-      {isLoading && <Loading/>}
-      
-      <div className={`results-grid ${hideResults}`}>
-      {seriesResults.results !== undefined && seriesResults.results.map((serie)=> {
-        return (
-          <div className="image-container" key={serie.id}>
-            <img className="item-img" src={`${serie.thumbnail.path}/portrait_incredible.${serie.thumbnail.extension}`} alt={serie.name}/>
-            <div className="item-name-container">
-              <span className="item-name">{serie.title}</span>
-            </div>
-          </div>
-        );
-        })}
-      </div>
-        {seriesResults.results !== undefined && <Pagination
-                                                      pageCount={Math.ceil(seriesResults.total / seriesResults.limit)} 
-                                                      onPageChange={({ selected: selectedPage }) => apiCall(selectedPage * 30)}/>}
-      <PageFooter/>
+      <PageComp pageName="SERIES" handleSubmit={handleSubmit} placeholderText="Series name"
+                itemSearch={serieSearchField} setItemSearch={e => setSerieSearchField(e.target.value)}
+                isLoading={isLoading} hideResults={hideResults} itemResults={seriesResults}
+                goToPage="serie" itemType="title"
+                pageChange={({ selected: selectedPage }) => apiCall(selectedPage * 30)}/>
     </>
   );
 }

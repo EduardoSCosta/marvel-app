@@ -1,13 +1,7 @@
 import { useState } from 'react';
-import Pagination from '../../../components/Pagination';
-import PageHeader from '../../../components/PageHeader';
-import SearchField from '../../../components/SearchField';
-import Loading from '../../../components/Loading';
+import PageComp from '../../../components/PageComp';
 import api from '../../../service/api';
 import md5Hash from '../../../utils/md5Hash';
-
-import './styles.css';
-import PageFooter from '../../../components/PageFooter';
 
 const CreatorsListPage = () => {
 
@@ -45,27 +39,11 @@ const CreatorsListPage = () => {
   
   return(
     <>
-      <PageHeader/>
-      <SearchField pageName="CREATORS" handleSubmit={handleSubmit} placeholderText="Creator name"
-                  itemSearch={creatorSearchField} setItemSearch={e => setCreatorSearchField(e.target.value)}/>
-      {isLoading && <Loading/>}
-
-      <div className={`results-grid ${hideResults}`}>
-      {creatorsResults.results !== undefined && creatorsResults.results.map((creator)=> {
-        return (
-          <div className="image-container" key={creator.id}>
-            <img className="item-img" src={`${creator.thumbnail.path}/portrait_incredible.${creator.thumbnail.extension}`} alt={creator.name}/>
-            <div className="item-name-container">
-              <span className="item-name">{creator.fullName}</span>
-            </div>
-          </div>
-        );
-        })}
-      </div>
-        {creatorsResults.results !== undefined && <Pagination
-                                                      pageCount={Math.ceil(creatorsResults.total / creatorsResults.limit)} 
-                                                      onPageChange={({ selected: selectedPage }) => apiCall(selectedPage * 30)}/>}
-      <PageFooter/>
+      <PageComp pageName="CREATORS" handleSubmit={handleSubmit} placeholderText="Creator name"
+                itemSearch={creatorSearchField} setItemSearch={e => setCreatorSearchField(e.target.value)}
+                isLoading={isLoading} hideResults={hideResults} itemResults={creatorsResults}
+                goToPage="creator" itemType="fullName"
+                pageChange={({ selected: selectedPage }) => apiCall(selectedPage * 30)}/>
     </>
   );
 }
